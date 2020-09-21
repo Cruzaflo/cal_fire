@@ -1,5 +1,6 @@
 // Store our API endpoint as queryUrl
 var queryUrl = "https://www.fire.ca.gov/umbraco/api/IncidentApi/GeoJsonList?inactive=false.geojson";
+https://opendata.arcgis.com/datasets/4fb94e78686d4932ac71bbe561e7cb9b_0.geojson
 d3.json(queryUrl, function (data){
   console.log(data)
 })
