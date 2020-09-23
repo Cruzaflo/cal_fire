@@ -1,38 +1,9 @@
-//Create map
-var myMap = L.map("map", {
-    center: [36.7783, -119.4179],
-    zoom: 6
-})
 
-//add basic streets tile layer to map
-L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-    attribution: "Cal-Fire",
-    maxZoom: 18,
-    id: "mapbox.streets",
-    accessToken: API_KEY
-  }).addTo(myMap)
-
-
-//roadblock #1 solution. This code will bypass the CORS access restriction for our API url
+//roadblock #1 solution. This will bypass the CORS access restriction for our API url
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
-const url = "https://www.fire.ca.gov/umbraco/api/IncidentApi/GeoJsonList?inactive=false"; // site that doesn’t send Access-Control-*
-fetch(proxyurl + url) // https://cors-anywhere.herokuapp.com/https://example.com
-.then(response => response.text())
-.then(contents => console.log(contents))
-.catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+const APIurl = "https://www.fire.ca.gov/umbraco/api/IncidentApi/GeoJsonList?inactive=false";
 //per the soltuon, we must combine the proxy URL and our API url
-var queryJSON = proxyurl + url
-
-
-
-function filterByYear (features){
-    var str = features.properties.Started
-    var strArray = str.split("-")
-    var year = Number(strArray[0])
-    if (year >= 2016) {
-        return true
-    }
-}
+var queryJSON = proxyurl + APIurl
 
 //define function for adding popups to each feature/marker. 
 function onEachFeature (feature, layer){
@@ -56,15 +27,45 @@ function onEachFeature (feature, layer){
     )
 }
 
-
 //load the queryJSON url(proxy url + our API URL)
 d3.json(queryJSON, function(data){
     console.log(data)
+    var overlayMaps = {}
+    var years = [2016, 2017, 2018, 2019, 2020]
     //create features for the map
-    L.geoJSON(data.features, {
-        filter: filterByYear,
-        onEachFeature: onEachFeature
-    }).addTo(myMap)
-})
+    years.forEach(function (syear){
+        function filterByYear (feature){
+            var str = feature.properties.Started
+            var strArray = str.split("-")
+            var year = Number(strArray[0])
+            if (year === syear) {
+                return true
+            }
+        }
 
+        var layerGroup = L.geoJSON(data.features, {
+            filter: filterByYear,
+            onEachFeature: onEachFeature
+        })
+        
+        overlayMaps[`${syear}`] = layerGroup
+    })
+
+    //streets tile layer variable
+    var streetMap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+    attribution: "Cal-Fire",
+    maxZoom: 18,
+    id: "mapbox.streets",
+    accessToken: API_KEY
+  })
+
+//Create map adding the street map and the 2020 features as default layers
+    var myMap = L.map("map", {
+        center: [36.7783, -119.4179],
+        zoom: 6,
+        layers: [streetMap, overlayMaps["2020"]]
+    })
+
+    L.control.layers(overlayMaps).addTo(myMap)
+})
 
