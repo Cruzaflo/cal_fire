@@ -12,7 +12,6 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
     accessToken: API_KEY
   }).addTo(myMap)
 
-<<<<<<< HEAD
 
 //roadblock #1 solution. This code will bypass the CORS access restriction for our API url
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
@@ -66,12 +65,6 @@ d3.json(queryJSON, function(data){
         filter: filterByYear,
         onEachFeature: onEachFeature
     }).addTo(myMap)
-=======
-d3.json(queryUrl, function(data){
-    //create features for the map based on the data features
-    console.log(data)
-    L.geoJSON(data.features).addTo(myMap)
->>>>>>> parent of 5686244... update
 })
 
 
