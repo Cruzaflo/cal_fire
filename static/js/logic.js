@@ -27,28 +27,52 @@ function onEachFeature (feature, layer){
     )
 }
 
+
+
+//define function to call the custom marker
+function customIcon (feature, latlng){
+    //define custom marker
+    var fireIcon = L.icon({
+        iconSize: [32, 32],
+        iconAnchor: [13, 27],
+        popupAnchor:  [1, -24],
+        iconUrl: 'static/icons/fire_icon.png'
+    })
+    return L.marker(latlng, {icon: fireIcon})
+}
+
+
 //load the queryJSON url(proxy url + our API URL)
 d3.json(queryJSON, function(data){
     console.log(data)
     var overlayMaps = {}
     var years = [2016, 2017, 2018, 2019, 2020]
+
     //create features for the map
-    years.forEach(function (syear){
+
+    //Loop through the years array to create a layer group for each year
+    years.forEach(function (startYear){
+        //define a function to filter features based on year. 
         function filterByYear (feature){
             var str = feature.properties.Started
             var strArray = str.split("-")
             var year = Number(strArray[0])
-            if (year === syear) {
+            //checks to see if the feature's year is equal to the current year in the loop
+            if (year === startYear) {
                 return true
             }
         }
-
+        // define the layerGroup variable 
         var layerGroup = L.geoJSON(data.features, {
+            //use the filterByYear and onEachFeature functions that we previously defined. 
             filter: filterByYear,
+            pointToLayer: customIcon,
             onEachFeature: onEachFeature
         })
         
-        overlayMaps[`${syear}`] = layerGroup
+        //add the layerGroup to the overlayMaps object.
+        // the key will be the year and the value will be the layerGroup
+        overlayMaps[`${startYear}`] = layerGroup
     })
 
     //streets tile layer variable
@@ -59,13 +83,14 @@ d3.json(queryJSON, function(data){
     accessToken: API_KEY
   })
 
-//Create map adding the street map and the 2020 features as default layers
+    //Create map adding the street map and the 2020 features as default layers
     var myMap = L.map("map", {
         center: [36.7783, -119.4179],
         zoom: 6,
         layers: [streetMap, overlayMaps["2020"]]
     })
 
+    //add the overlayMaps layers to the control box so we can select which year we want
     L.control.layers(overlayMaps).addTo(myMap)
 })
 
