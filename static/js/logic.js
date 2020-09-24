@@ -77,20 +77,29 @@ d3.json(queryJSON, function(data){
 
     //streets tile layer variable
     var streetMap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-    attribution: "Cal-Fire",
-    maxZoom: 18,
-    id: "mapbox.streets",
-    accessToken: API_KEY
-  })
+        attribution: "Cal-Fire",
+        maxZoom: 18,
+        id: "mapbox.streets",
+        accessToken: API_KEY
+    })
+
+    var baseLayers = {
+        "Main Map": streetMap
+    }
+
 
     //Create map adding the street map and the 2020 features as default layers
     var myMap = L.map("map", {
         center: [36.7783, -119.4179],
         zoom: 6,
-        layers: [streetMap, overlayMaps["2020"]]
+        //default layers
+        layers: [
+            streetMap,
+            overlayMaps["2020"]
+        ]
     })
 
     //add the overlayMaps layers to the control box so we can select which year we want
-    L.control.layers(overlayMaps).addTo(myMap)
+    L.control.layers(baseLayers, overlayMaps).addTo(myMap)
 })
 
