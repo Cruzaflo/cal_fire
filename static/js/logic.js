@@ -27,8 +27,6 @@ function onEachFeature (feature, layer){
     )
 }
 
-
-
 //define function to call the custom marker
 function customIcon (feature, latlng){
     //define custom marker
@@ -74,6 +72,8 @@ d3.json(queryJSON, function(data){
         // the key will be the year and the value will be the layerGroup
         overlayMaps[`${startYear}`] = layerGroup
     })
+
+    
 
     //streets tile layer variable
     var streetMap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
