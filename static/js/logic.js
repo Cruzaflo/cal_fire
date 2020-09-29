@@ -31,7 +31,7 @@ function onEachFeature (feature, layer){
 function customIcon (feature, latlng){
     //define custom marker
     var fireIcon = L.icon({
-        iconSize: [32, 32],
+        iconSize: [28, 28],
         iconAnchor: [13, 27],
         popupAnchor:  [1, -24],
         iconUrl: 'static/icons/fire_icon.png'

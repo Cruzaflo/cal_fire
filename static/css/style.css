@@ -45,3 +45,25 @@ body,
   margin: 0;
   margin-bottom: 15px;
 }
+
+#header{
+  border: 5px double rgb(80, 79, 79);
+}
+
+.map-border{
+  border: 3px double gray
+}
+
+#img {
+  width:80%;
+  height: auto;
+}
+
+#title-img {
+  width:70%;
+  height: auto;
+}
+
+#title{
+  border-bottom: 3px solid rgb(179, 177, 177);
+}

@@ -23,21 +23,69 @@
 
 <body>
   <!-- The div where we will inject our map -->
-  <h1 class="text-center">California Fire Map and Visualizations</h1>
-  <div class ="container">
-    <div class="row">
-    <!--  <div class="col-md-12"> -->
-        <div id="map"></div>
-      </div>
-    <!--</div>-->
-  </div>
-  <br>
-  <div>
 
-    <a href="static\images\fires_by_county_fig.html">Fires by County</a>
-    <br>
-    <a href="static\images\acreage_by_county_fig.html">Acreage by County</a>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div>
+            <br>
+            <img id="title-img" src="static\images\CalFireLogwithtest.png">
+          </div>
+        </div>
+        <div class="row">
+          <div class = col-md-12 id="title">
+            <h1 class="text-center"><strong>California Fire Map and Visualizations</strong></h1>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <br>
+  <div class ="container">
+    <section>
+      <div class="row" >
+          <div class="col-md-12">
+            <h2><strong>Fire Map</strong></h2>
+            <p>Below, you will see a map of California with fire icons. Each fire icon represents where a fire has taken place, or is currently taken place. You can click on each fire icon to see the following details: 
+              <strong>fire name</strong>, <strong>county</strong>, <strong>start date</strong>, <strong>extinguish date</strong>, <strong>acreage</strong>, and a link to <strong>more information</strong></p>
+            <br>
+            <p>The map also containes a control box on the top right. If you hover your mouse over it, you will notice that the years between 2016 and 2020 will appear with checkboxes. Check the box for each year that you would like displayed on the map.</p>
+          </div>
+      </div>
+      <div class="row">
+        <div id="body-border" class="col-md-12">
+          <div class = "map-border" id="map">
+          </div>
+        </div>
+      </div>
+      <br>
+  </section>
+  <section>
+      <div class="row">
+        <div class="col-12-md">
+          <h2><strong>Visualizations</strong></h2>
+          <p>
+            To help understand how devastating these fires are, we have provided two chart visualizations: <strong>fires by county</strong> and <strong>acreage burned by county</strong>. Click on them for a more in-depth and interactive analysis. 
+          </p>
+        </div>
+      </div>
+    <div class="row">
+      <div class="col-md-6"> 
+        <a class = "visualization-link" target="_blank" href="static\images\fires_by_county_fig.html">
+          <div id="body-border"></div>
+          <img id="img" src="static\images\fires_by_county.png">
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a class = "visualization-link" target="_blank" href="static\images\acreage_by_county_fig.html">
+          <img id="img" src="static\images\acreage_burned_by_county.png">
+        </a>
+      </div>
+    </div>
+  </section>
   </div>
+  
 
   <!-- API KEy-->
   <script type="text/javascript" src="static/js/config.js"></script>
