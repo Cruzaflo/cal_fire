@@ -33,13 +33,17 @@ Fire data collected from the [Cal Fire API](https://www.fire.ca.gov/umbraco/api/
 
 ## Visualizations
 
+We created some visualizations to help further show the extent of the fires over the past 5 years. With these visualizations, it was easier to show and compare different year over year trends for fires in California. We were able to use bar graphs to show yearly total acreage burned, acres burned per county, and total fires per county. 
+
+
+
 ## Observations from the Data
-There were a large number of fires each year
-Especially when the years are combined, the map gets cluttered
-The icons do not differentiate by size of fire, large fires are noted the same as small fires
-Some fires span across multiple counties and the csv reflects this by creating a unique category combining bordering counties; this obscures the the actual number of fires per county
-Causes of the fire are listed in a separate data set 
-CAL Fire provided unique I.D.s for each fire which made identification easier
+* There were a large number of fires each year
+* When all the years are selected on the map, the map gets cluttered with icons and because difficult to read
+* The icons do not differentiate by size of fire; large fires are noted the same as small fires
+* Some fires span across multiple counties. The csv reflects this by creating a unique category combining bordering counties; this obscures the the actual number of fires per county
+* Causes of the fire are listed in a separate data set 
+* CAL Fire provided unique I.D.s for each fire which made identification easier
 
 
 ## Possible Ideas for the Future
