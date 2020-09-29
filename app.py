@@ -21,6 +21,18 @@ acreage = [
 def home():
     return render_template("index.html")
 
+@app.route("/fires-by-county")
+def chart_1():
+    return render_template("fires_by_county_fig.html")
+
+@app.route("/acreage-by-county")
+def chart_2():
+    return render_template("acreage_by_county_fig.html")
+
+@app.route("/acreage-by-year")
+def chart_3():
+    return render_template("acreage_by_year.html")    
+
 app.config["DEBUG"] = True
 @app.route('/api', methods=['GET'])
 def api_all():

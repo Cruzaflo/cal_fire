@@ -57,6 +57,7 @@ body,
 #img {
   width:95%;
   height: auto;
+  border: 3px double gray
 }
 
 #title-img {
