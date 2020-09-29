@@ -35,7 +35,9 @@ Fire data collected from the [Cal Fire API](https://www.fire.ca.gov/umbraco/api/
 
 We created some visualizations to help further show the extent of the fires over the past 5 years. With these visualizations, it was easier to show and compare different year over year trends for fires in California. We were able to use bar graphs to show yearly total acreage burned, acres burned per county, and total fires per county. 
 
-
+<p align="center">
+ <img src="images/Firespercountry.png">
+</p> 
 
 ## Observations from the Data
 * There were a large number of fires each year
