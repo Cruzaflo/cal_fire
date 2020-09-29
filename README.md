@@ -14,3 +14,19 @@ In an effort to provide a more detailed view of the forest fires in the state of
 ## Data Sets Used
 
 Fire data collected from the [Cal Fire API](https://www.fire.ca.gov/umbraco/api/IncidentApi/GeoJsonList?inactive=false)
+
+## Tools Used
+
+* Javascript     
+* MapBox
+* Leaflet
+* Flask
+* Python
+* Pandas
+* Plotly
+
+## Visualizations
+
+## Observations from the Data
+
+## Possible Ideas for the Future
