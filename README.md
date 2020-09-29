@@ -26,10 +26,10 @@ Fire data collected from the [Cal Fire API](https://www.fire.ca.gov/umbraco/api/
 * Plotly
 
 ## Flask Deployment Instructions
-Step 1: Download the Repository
-Step 2: Use the terminal to navigate to the root directory
-Step 3: In terminal, type Python -m flask run
-Step 4: Put the server address into your browser
+* Step 1: Download the Repository
+* Step 2: Use the terminal to navigate to the root directory
+* Step 3: In terminal, type Python -m flask run
+* Step 4: Put the server address into your browser
 
 ## Visualizations
 
