@@ -1,6 +1,8 @@
 from flask import Flask, render_template
 from flask import request, jsonify
 import pandas as pd
+import json
+import requests
 app = Flask(__name__)
 
 # Create some data in the form of a list of dictionaries.
@@ -16,6 +18,10 @@ acreage = [
     {'year': 2020,
      'acres_burned': '2882362'}
 ]
+
+url = "https://www.fire.ca.gov/umbraco/api/IncidentApi/GeoJsonList?inactive=false"
+response = requests.get(url)
+json = response.json()
 
 @app.route("/")
 def home():
@@ -37,7 +43,11 @@ app.config["DEBUG"] = True
 @app.route('/api', methods=['GET'])
 def api_all():
     return jsonify(acreage)
-app.run()
 
+@app.route("/geo-json", methods=['GET'])
+def serve_json():
+    return json
+
+app.run() 
 if __name__ == '__main__':
     app.run(debug=True)
